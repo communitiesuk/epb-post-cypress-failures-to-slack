@@ -31,7 +31,7 @@
     "walk-sync": "^3.0.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.36.1",
+    "@vercel/ncc": "^0.38.1",
     "jest": "^29.0.0",
     "standard": "^17.0.0"
   },
