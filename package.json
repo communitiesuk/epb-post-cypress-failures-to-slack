@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/actions/javascript-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^3.0.1",
     "@slack/web-api": "^7.0.0",
     "walk-sync": "^4.0.2"
   },
