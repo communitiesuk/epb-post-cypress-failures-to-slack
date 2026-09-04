@@ -1,48 +1,48 @@
 {
-  "name": "javascript-action",
-  "version": "1.0.0",
-  "description": "JavaScript Action Template",
-  "main": "index.js",
-  "scripts": {
-    "fmt": "npx standard --fix",
-    "lint": "npx standard",
-    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
-    "test": "jest",
-    "all": "npm run lint && npm run prepare && npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/actions/javascript-action.git"
-  },
-  "keywords": [
-    "GitHub",
-    "Actions",
-    "JavaScript"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/actions/javascript-action/issues"
-  },
-  "homepage": "https://github.com/actions/javascript-action#readme",
-  "dependencies": {
-    "@actions/core": "^3.0.1",
-    "@slack/web-api": "^8.1.1",
-    "walk-sync": "^4.0.2"
-  },
-  "devDependencies": {
-    "@vercel/ncc": "^0.45.0",
-    "jest": "^30.4.2",
-    "standard": "^17.0.0"
-  },
-  "standard": {
-    "ignore": [
-      "dist/**/*.js"
-    ],
-    "globals": [
-      "expect",
-      "jest",
-      "test"
-    ]
-  }
+	"name": "javascript-action",
+	"version": "1.0.0",
+	"description": "JavaScript Action Template",
+	"main": "index.js",
+	"scripts": {
+		"fmt": "npx  @biomejs/biome check  --write",
+		"lint": "npx  @biomejs/biome check ",
+		"prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
+		"test": "jest",
+		"all": "npm run lint && npm run prepare && npm run test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/actions/javascript-action.git"
+	},
+	"keywords": [
+		"GitHub",
+		"Actions",
+		"JavaScript"
+	],
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/actions/javascript-action/issues"
+	},
+	"homepage": "https://github.com/actions/javascript-action#readme",
+	"dependencies": {
+		"@actions/core": "^3.0.1",
+		"@slack/web-api": "^8.1.1",
+		"walk-sync": "^4.0.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.12",
+		"@vercel/ncc": "^0.45.0",
+		"jest": "^30.4.2"
+	},
+	"standard": {
+		"ignore": [
+			"dist/**/*.js"
+		],
+		"globals": [
+			"expect",
+			"jest",
+			"test"
+		]
+	}
 }

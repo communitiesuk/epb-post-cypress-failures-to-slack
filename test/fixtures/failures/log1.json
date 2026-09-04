@@ -1,11 +1,11 @@
 {
-    "specName": "integration%2Ffind_domestic_certificate_by_postcode_spec.js",
-    "title": "shows existence of those certificates on the search results page",
-    "suiteName": "with a postcode for which certificates exist",
-    "testName": "Find EPC by postcode in Welsh with a postcode for which certificates exist shows existence of those certificates on the search results page",
-    "testError": "Timed out retrying after 4000ms: Expected to find content: 'Dechreuwch nawr' but never did.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `with a postcode for which c...`",
-    "testCommands": [
-        "visit https://www.gov.uk/dod-o-hyd-i-dystysgrif-ynni",
-        "contains Dechreuwch nawr"
-    ]
+	"specName": "integration%2Ffind_domestic_certificate_by_postcode_spec.js",
+	"title": "shows existence of those certificates on the search results page",
+	"suiteName": "with a postcode for which certificates exist",
+	"testName": "Find EPC by postcode in Welsh with a postcode for which certificates exist shows existence of those certificates on the search results page",
+	"testError": "Timed out retrying after 4000ms: Expected to find content: 'Dechreuwch nawr' but never did.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `with a postcode for which c...`",
+	"testCommands": [
+		"visit https://www.gov.uk/dod-o-hyd-i-dystysgrif-ynni",
+		"contains Dechreuwch nawr"
+	]
 }

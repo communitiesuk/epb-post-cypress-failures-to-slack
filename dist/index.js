@@ -35241,25 +35241,31 @@ module.exports = walkSync;
 /***/ 3906:
 /***/ ((module) => {
 
-const attachAssetsToSlackThread = async (screenshots, slack, streamAsset, threadOpts, debugLog = () => {}) => {
-  if (screenshots.length > 0) {
-    console.log('Uploading screenshots...')
+const attachAssetsToSlackThread = async (
+	screenshots,
+	slack,
+	streamAsset,
+	threadOpts,
+	debugLog = () => {}
+) => {
+	if (screenshots.length > 0) {
+		console.log('Uploading screenshots...')
 
-    await Promise.all(
-      screenshots.map(async screenshot => {
-        debugLog(`Uploading ${screenshot}`)
+		await Promise.all(
+			screenshots.map(async (screenshot) => {
+				debugLog(`Uploading ${screenshot}`)
 
-        await slack.files.uploadV2({
-          filename: screenshot,
-          file: streamAsset(screenshot),
-          thread_ts: threadOpts.threadId,
-          channel_id: threadOpts.channelId
-        })
-      })
-    ).catch(e => console.log(e))
+				await slack.files.uploadV2({
+					filename: screenshot,
+					file: streamAsset(screenshot),
+					thread_ts: threadOpts.threadId,
+					channel_id: threadOpts.channelId
+				})
+			})
+		).catch((e) => console.log(e))
 
-    console.log('...done!')
-  }
+		console.log('...done!')
+	}
 }
 
 module.exports = attachAssetsToSlackThread
@@ -35272,63 +35278,63 @@ module.exports = attachAssetsToSlackThread
 
 /** Formats parsed failures as block components as per the Slack Block Kit @see https://api.slack.com/block-kit */
 const formatFailuresAsBlocks = (failures, messageText, screenshotCount) => {
-  const blocks = [{
-    type: 'header',
-    text: {
-      type: 'plain_text',
-      text: `${messageText} (${failures.length} failure${failures.length === 1 ? '' : 's'})`
-    }
-  }].concat(
-    failures
-      .map(failure => ([
-        {
-          type: 'context',
-          elements: [
-            {
-              type: 'mrkdwn',
-              text: '📄'
-            },
-            {
-              type: 'mrkdwn',
-              text: `*File*: *${failure.testFile}*`
-            }
-          ]
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `*failed test*: ${failure.fullDescription}`
-          }
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `*message*: \`${failure.message.split('\n')[0].replace(/`/g, '')}\``
-          }
-        },
-        {
-          type: 'divider'
-        }
-      ]))
-      .flat()
-  )
+	const blocks = [
+		{
+			type: 'header',
+			text: {
+				type: 'plain_text',
+				text: `${messageText} (${failures.length} failure${failures.length === 1 ? '' : 's'})`
+			}
+		}
+	].concat(
+		failures.flatMap((failure) => [
+			{
+				type: 'context',
+				elements: [
+					{
+						type: 'mrkdwn',
+						text: '📄'
+					},
+					{
+						type: 'mrkdwn',
+						text: `*File*: *${failure.testFile}*`
+					}
+				]
+			},
+			{
+				type: 'section',
+				text: {
+					type: 'mrkdwn',
+					text: `*failed test*: ${failure.fullDescription}`
+				}
+			},
+			{
+				type: 'section',
+				text: {
+					type: 'mrkdwn',
+					text: `*message*: \`${failure.message.split('\n')[0].replace(/`/g, '')}\``
+				}
+			},
+			{
+				type: 'divider'
+			}
+		])
+	)
 
-  if (screenshotCount > 0) {
-    blocks.push({
-      type: 'section',
-      text: {
-        type: 'mrkdwn',
-        text: `${screenshotCount === 1 ? 'One screenshot' : `${screenshotCount} screenshots`} in :thread:`
-      }
-    })
-  } else {
-    // pop off the last divider
-    blocks.pop()
-  }
+	if (screenshotCount > 0) {
+		blocks.push({
+			type: 'section',
+			text: {
+				type: 'mrkdwn',
+				text: `${screenshotCount === 1 ? 'One screenshot' : `${screenshotCount} screenshots`} in :thread:`
+			}
+		})
+	} else {
+		// pop off the last divider
+		blocks.pop()
+	}
 
-  return blocks
+	return blocks
 }
 
 module.exports = formatFailuresAsBlocks
@@ -35339,14 +35345,18 @@ module.exports = formatFailuresAsBlocks
 /***/ 6024:
 /***/ ((module) => {
 
-const parseFailLog = files => {
-  return files
-    .map(JSON.parse)
-    .map(failure => ({
-      fullDescription: failure.testName,
-      message: failure.testError.split('\n').filter(line => line.length > 0 && !line.startsWith('Because this error occurred')).join('\n'),
-      testFile: failure.specName.split('%2F').slice(1).join('/')
-    }))
+const parseFailLog = (files) => {
+	return files.map(JSON.parse).map((failure) => ({
+		fullDescription: failure.testName,
+		message: failure.testError
+			.split('\n')
+			.filter(
+				(line) =>
+					line.length > 0 && !line.startsWith('Because this error occurred')
+			)
+			.join('\n'),
+		testFile: failure.specName.split('%2F').slice(1).join('/')
+	}))
 }
 
 module.exports = parseFailLog
@@ -41250,11 +41260,11 @@ function getIDToken(aud) {
  */
 
 //# sourceMappingURL=core.js.map
-// EXTERNAL MODULE: ./node_modules/walk-sync/dist/index.js
-var dist = __nccwpck_require__(2860);
-var dist_default = /*#__PURE__*/__nccwpck_require__.n(dist);
 // EXTERNAL MODULE: ./node_modules/@slack/web-api/dist/index.js
-var web_api_dist = __nccwpck_require__(5105);
+var dist = __nccwpck_require__(5105);
+// EXTERNAL MODULE: ./node_modules/walk-sync/dist/index.js
+var walk_sync_dist = __nccwpck_require__(2860);
+var walk_sync_dist_default = /*#__PURE__*/__nccwpck_require__.n(walk_sync_dist);
 // EXTERNAL MODULE: ./src/attach-assets-to-slack-thread.js
 var attach_assets_to_slack_thread = __nccwpck_require__(3906);
 var attach_assets_to_slack_thread_default = /*#__PURE__*/__nccwpck_require__.n(attach_assets_to_slack_thread);
@@ -41274,60 +41284,70 @@ var parse_fail_log_default = /*#__PURE__*/__nccwpck_require__.n(parse_fail_log);
 
 
 // most @actions toolkit packages have async methods
-async function run () {
-  try {
-    const token = getInput('token')
-    const channel = getInput('channel')
-    const workdir = getInput('workdir') || 'cypress'
-    const messageText =
-      getInput('message-text') ||
-      'A Cypress test just finished. Errors follow. Any screenshots are in this thread'
+async function run() {
+	try {
+		const token = getInput('token')
+		const channel = getInput('channel')
+		const workdir = getInput('workdir') || 'cypress'
+		const messageText =
+			getInput('message-text') ||
+			'A Cypress test just finished. Errors follow. Any screenshots are in this thread'
 
-    core_debug(`Token: ${token}`)
-    core_debug(`Channel: ${channel}`)
-    core_debug(`Message text: ${messageText}`)
+		core_debug(`Token: ${token}`)
+		core_debug(`Channel: ${channel}`)
+		core_debug(`Message text: ${messageText}`)
 
-    core_debug('Initializing slack SDK')
-    const slack = new web_api_dist.WebClient(getInput('token'))
-    core_debug('Slack SDK initialized successfully')
+		core_debug('Initializing slack SDK')
+		const slack = new dist.WebClient(getInput('token'))
+		core_debug('Slack SDK initialized successfully')
 
-    core_debug('Checking for screenshots from cypress')
-    const screenshots = dist_default()(workdir, { globs: ['**/screenshots/**/*.png'] })
-    const logs = dist_default()(workdir, { globs: ['**/logs/*.json'] })
+		core_debug('Checking for screenshots from cypress')
+		const screenshots = walk_sync_dist_default()(workdir, {
+			globs: ['**/screenshots/**/*.png']
+		})
+		const logs = walk_sync_dist_default()(workdir, { globs: ['**/logs/*.json'] })
 
-    info(`There were ${logs.length} errors based on the files present.`)
-    if (logs.length > 0) {
-      info(`The log files found were: ${logs.join(', ')}`)
-    } else {
-      core_debug('No failures found!')
-      setOutput('result', 'No failures logged found so no action taken!')
-      return
-    }
+		info(`There were ${logs.length} errors based on the files present.`)
+		if (logs.length > 0) {
+			info(`The log files found were: ${logs.join(', ')}`)
+		} else {
+			core_debug('No failures found!')
+			setOutput('result', 'No failures logged found so no action taken!')
+			return
+		}
 
-    const failures = parse_fail_log_default()(logs.map(path => (0,external_fs_.readFileSync)(`${workdir}/${path}`)))
+		const failures = parse_fail_log_default()(
+			logs.map((path) => (0,external_fs_.readFileSync)(`${workdir}/${path}`))
+		)
 
-    const failureBlocks = format_failures_as_blocks_default()(failures, messageText, screenshots.length)
+		const failureBlocks = format_failures_as_blocks_default()(
+			failures,
+			messageText,
+			screenshots.length
+		)
 
-    const result = await slack.chat.postMessage({
-      text: messageText,
-      blocks: failureBlocks,
-      channel
-    })
+		const result = await slack.chat.postMessage({
+			text: messageText,
+			blocks: failureBlocks,
+			channel
+		})
 
-    const { ts: threadId, channel: channelId } = result
+		const { ts: threadId, channel: channelId } = result
 
-    await attach_assets_to_slack_thread_default()(
-      screenshots,
-      slack,
-      asset => (0,external_fs_.createReadStream)(`${workdir}/${asset}`),
-      { threadId, channelId },
-      core_debug
-    )
+		await attach_assets_to_slack_thread_default()(
+			screenshots,
+			slack,
+			(asset) => (0,external_fs_.createReadStream)(`${workdir}/${asset}`),
+			{ threadId, channelId },
+			core_debug
+		)
 
-    info(`Failure messages and any screenshots have now been sent to your \`${channel}\` channel in Slack!`)
-  } catch (error) {
-    setFailed(error.message)
-  }
+		info(
+			`Failure messages and any screenshots have now been sent to your \`${channel}\` channel in Slack!`
+		)
+	} catch (error) {
+		setFailed(error.message)
+	}
 }
 
 run()

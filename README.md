@@ -80,7 +80,7 @@ NB. This action uses Node 16 as a runtime, so should be used with at least v3 of
 
 Development on the `v1` branch should take place within that branch, with changes merged back into `main`. Tagged releases for the v1.x releases should likewise be made from `v1`. This branching convention is specific to development of a GitHub action and ensures that the action can be consumed with least surprise.
 
-Code is formatted according to [JavaScript Standard Style](https://standardjs.com) - make sure you [install extensions/plugins](https://standardjs.com/#are-there-text-editor-plugins) to your editor. `npm run lint` lints the code, and `npm run fmt` auto-fixes it.
+Code is formatted using biome, replacing Standard. `npm run lint` will format and lint the code, and `npm run fmt` will format, lint and apply the safe fixes.
 
 To check out dependencies for the project, run `npm ci`.
 

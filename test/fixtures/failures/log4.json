@@ -1,11 +1,11 @@
 {
-    "specName": "integration%2Ffind_non_domestic_certificate_by_rrn_spec.js",
-    "title": "shows the certificate with the expected header",
-    "suiteName": "Find non-domestic certificate by postcode (Welsh)",
-    "testName": "Find non-domestic certificate by postcode (Welsh) shows the certificate with the expected header",
-    "testError": "Timed out retrying after 4000ms: Expected to find content: 'Dechreuwch nawr' but never did.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Find non-domestic certifica...`",
-    "testCommands": [
-        "visit https://www.gov.uk/dod-o-hyd-i-dystysgrif-ynni",
-        "contains Dechreuwch nawr"
-    ]
+	"specName": "integration%2Ffind_non_domestic_certificate_by_rrn_spec.js",
+	"title": "shows the certificate with the expected header",
+	"suiteName": "Find non-domestic certificate by postcode (Welsh)",
+	"testName": "Find non-domestic certificate by postcode (Welsh) shows the certificate with the expected header",
+	"testError": "Timed out retrying after 4000ms: Expected to find content: 'Dechreuwch nawr' but never did.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Find non-domestic certifica...`",
+	"testCommands": [
+		"visit https://www.gov.uk/dod-o-hyd-i-dystysgrif-ynni",
+		"contains Dechreuwch nawr"
+	]
 }
