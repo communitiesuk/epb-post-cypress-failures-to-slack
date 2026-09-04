@@ -28,7 +28,7 @@
   "dependencies": {
     "@actions/core": "^1.2.5",
     "@slack/web-api": "^7.0.0",
-    "walk-sync": "^3.0.0"
+    "walk-sync": "^4.0.2"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.45.0",
