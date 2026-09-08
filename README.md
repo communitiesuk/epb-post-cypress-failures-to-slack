@@ -60,21 +60,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: 'Run tests'
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v7
 
       - name: 'Post Cypress failures to Slack'
-        uses: communitiesuk/post-cypress-failures-to-slack@v1
+        uses: communitiesuk/post-cypress-failures-to-slack@v1.2
         if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channel: 'engineering-ops'
           message-text: 'The Cypress tests run within GitHub Actions failed!'
 ```
-
-NB. This action uses Node 16 as a runtime, so should be used with at least v3 of [cypress-io/github-action](https://github.com/cypress-io/github-action).
 
 ## Development notes
 
