@@ -38315,6 +38315,8 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 
+// EXTERNAL MODULE: external "node:fs"
+var external_node_fs_ = __nccwpck_require__(3024);
 ;// CONCATENATED MODULE: external "os"
 const external_os_namespaceObject = require("os");
 ;// CONCATENATED MODULE: ./node_modules/@actions/core/lib/utils.js
@@ -41317,7 +41319,7 @@ async function run() {
 		}
 
 		const failures = parse_fail_log_default()(
-			logs.map((path) => (0,external_fs_.readFileSync)(`${workdir}/${path}`))
+			logs.map((path) => (0,external_node_fs_.readFileSync)(`${workdir}/${path}`))
 		)
 
 		const failureBlocks = format_failures_as_blocks_default()(
@@ -41337,7 +41339,7 @@ async function run() {
 		await attach_assets_to_slack_thread_default()(
 			screenshots,
 			slack,
-			(asset) => (0,external_fs_.createReadStream)(`${workdir}/${asset}`),
+			(asset) => (0,external_node_fs_.createReadStream)(`${workdir}/${asset}`),
 			{ threadId, channelId },
 			core_debug
 		)

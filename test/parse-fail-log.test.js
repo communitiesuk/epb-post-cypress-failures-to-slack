@@ -1,6 +1,6 @@
 const walkSync = require('walk-sync')
-const { readFileSync } = require('fs')
-const path = require('path')
+const { readFileSync } = require('node:fs')
+const path = require('node:path')
 const parseFailLog = require('../src/parse-fail-log')
 
 test('it successfully parses fail log files into failure objects', () => {

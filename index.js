@@ -1,6 +1,6 @@
+import { createReadStream, readFileSync } from 'node:fs'
 import * as core from '@actions/core'
 import { WebClient } from '@slack/web-api'
-import { createReadStream, readFileSync } from 'fs'
 import walkSync from 'walk-sync'
 import attachAssetsToSlackThread from './src/attach-assets-to-slack-thread'
 import formatFailuresAsBlocks from './src/format-failures-as-blocks'

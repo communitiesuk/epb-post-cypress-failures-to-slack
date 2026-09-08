@@ -60,21 +60,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: 'Run tests'
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v7
 
       - name: 'Post Cypress failures to Slack'
-        uses: communitiesuk/post-cypress-failures-to-slack@v1
+        uses: communitiesuk/post-cypress-failures-to-slack@v1.2
         if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channel: 'engineering-ops'
           message-text: 'The Cypress tests run within GitHub Actions failed!'
 ```
-
-NB. This action uses Node 16 as a runtime, so should be used with at least v3 of [cypress-io/github-action](https://github.com/cypress-io/github-action).
 
 ## Development notes
 
@@ -86,8 +84,12 @@ To check out dependencies for the project, run `npm ci`.
 
 Unit tests can be run using `npm run test`.
 
-Target Node version is v20 - make sure to be running this in your development environment.
+Target Node version is v24 - make sure to be running this in your development environment.
 
 ### Important note re compilation
 
-The action is consumed as a compiled file (dist/index.js), which is compiled using [`@vercel/ncc`](https://github.com/vercel/ncc). After all changes, and before committing, **make sure to run `npm ci`**. This ensures that you have the correct dependencies within your `node_modules` directory (strictly according to the package-lock.json file), and compiles a new version of dist/index.js, which should then be committed with your changes.
+The action is consumed as a compiled file (dist/index.js), which is compiled using [`@vercel/ncc`](https://github.com/vercel/ncc).
+
+After all changes, and before committing, **make sure to run `npm ci && npm run all`**. This ensures that you have the correct Dependencies
+within your `node_modules` directory (strictly according to the package-lock.json file), and compiles a new version of dist/index.js,
+which should then be committed with your changes.
