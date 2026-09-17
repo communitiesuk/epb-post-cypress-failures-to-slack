@@ -31,7 +31,7 @@
 		"walk-sync": "^4.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.12",
+		"@biomejs/biome": "^2.5.14",
 		"@vercel/ncc": "^0.45.0",
 		"jest": "^30.4.2"
 	},
