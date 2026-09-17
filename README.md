@@ -76,7 +76,8 @@ jobs:
 
 ## Development notes
 
-Development on the `v1` branch should take place within that branch, with changes merged back into `main`. Tagged releases for the v1.x releases should likewise be made from `v1`. This branching convention is specific to development of a GitHub action and ensures that the action can be consumed with least surprise.
+When doing development or updates, work on the `v1` branch. When you are happy with your changes, push them to the `v1` branch and merge them back into `main`. 
+In GitHub click on 'releases' then 'draft a new release' to create a new release. Make sure to create a new tag and target the `v1` branch. This branching convention is specific to development of a GitHub action and ensures that the action can be consumed with least surprise.
 
 Code is formatted using biome, replacing Standard. `npm run lint` will format and lint the code, and `npm run fmt` will format, lint and apply the safe fixes.
 
