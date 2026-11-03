@@ -62,21 +62,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: 'Run tests'
+      - name: "Run tests"
         uses: cypress-io/github-action@v7
 
-      - name: 'Post Cypress failures to Slack'
+      - name: "Post Cypress failures to Slack"
         uses: communitiesuk/post-cypress-failures-to-slack@v1.2
         if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
-          channel: 'engineering-ops'
-          message-text: 'The Cypress tests run within GitHub Actions failed!'
+          channel: "engineering-ops"
+          message-text: "The Cypress tests run within GitHub Actions failed!"
 ```
 
 ## Development notes
 
-When doing development or updates, work on the `v1` branch. When you are happy with your changes, push them to the `v1` branch and merge them back into `main`. 
+When doing development or updates, work on the `v1` branch. When you are happy with your changes, push them to the `v1` branch and merge them back into `main`.
 In GitHub click on 'releases' then 'draft a new release' to create a new release. Make sure to create a new tag and target the `v1` branch. This branching convention is specific to development of a GitHub action and ensures that the action can be consumed with least surprise.
 
 Code is formatted using biome, replacing Standard. `npm run lint` will format and lint the code, and `npm run fmt` will format, lint and apply the safe fixes.
