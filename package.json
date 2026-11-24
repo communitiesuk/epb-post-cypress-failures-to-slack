@@ -44,5 +44,10 @@
 			"jest",
 			"test"
 		]
+	},
+	"overrides": {
+		"babel-plugin-istanbul": {
+			"test-exclude": "8.0.0"
+		}
 	}
 }
